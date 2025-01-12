@@ -35,12 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginModal = void 0;
-var react_1 = __importDefault(require("react"));
+var react_1 = require("react");
 var LoginModal = function (_a) {
     var onClose = _a.onClose, onConnect = _a.onConnect, enabledMethods = _a.enabledMethods;
     var handleConnect = function (method) { return __awaiter(void 0, void 0, void 0, function () {
