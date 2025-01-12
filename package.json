@@ -1,15 +1,20 @@
 {
-  "name": "circle-wallet-sdk",
-  "version": "1.0.0",
+  "name": "circle-pw-embed-sdk",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src/index.css"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "prepare": "npm run build"
   },
   "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
@@ -18,5 +23,8 @@
     "tailwindcss": "^3.0.0",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 } 
