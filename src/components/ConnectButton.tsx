@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LoginModal } from './LoginModal';
 import { LoginMethod } from '../types';
 
 interface ConnectButtonProps {
   onConnect: (method: LoginMethod) => Promise<void>;
+  className?: string;
+  buttonColor?: string;
 }
 
-export const ConnectButton: React.FC<ConnectButtonProps> = ({
-  onConnect,
-}) => {
-  const [showModal, setShowModal] = useState(false);
+const ConnectButton = (props: ConnectButtonProps) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const { onConnect, className = '', buttonColor = 'bg-violet-500 hover:bg-violet-600' } = props;
 
   return (
-    <>
+    <div>
       <button 
-        className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600"
-        onClick={() => setShowModal(true)}
+        className={`${buttonColor} text-white px-6 py-3 rounded-xl font-medium transition-colors duration-200 ${className}`}
+        onClick={() => setIsOpen(true)}
       >
         Login or sign up
       </button>
       
-      {showModal && (
+      {isOpen && (
         <LoginModal
-          onClose={() => setShowModal(false)}
+          onClose={() => setIsOpen(false)}
           onConnect={onConnect}
+          buttonColor={buttonColor}
         />
       )}
-    </>
+    </div>
   );
-}; 
+};
+
+export { ConnectButton }; 

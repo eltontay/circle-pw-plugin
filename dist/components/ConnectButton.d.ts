@@ -2,6 +2,8 @@ import React from 'react';
 import { LoginMethod } from '../types';
 interface ConnectButtonProps {
     onConnect: (method: LoginMethod) => Promise<void>;
+    className?: string;
+    buttonColor?: string;
 }
-export declare const ConnectButton: React.FC<ConnectButtonProps>;
-export {};
+declare const ConnectButton: (props: ConnectButtonProps) => React.JSX.Element;
+export { ConnectButton };

@@ -3,6 +3,7 @@ import { LoginMethod } from '../types';
 interface LoginModalProps {
     onClose: () => void;
     onConnect: (method: LoginMethod) => Promise<void>;
+    buttonColor?: string;
 }
-export declare const LoginModal: React.FC<LoginModalProps>;
-export {};
+declare const LoginModal: (props: LoginModalProps) => React.JSX.Element;
+export { LoginModal };
