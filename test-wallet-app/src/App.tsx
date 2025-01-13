@@ -1,5 +1,5 @@
 import React from 'react';
-import { ConnectButton } from 'circle-pw-embed-sdk';
+import { ConnectButton } from 'circle-pw-sdk';
 
 function App() {
   const handleConnect = async (method: string) => {
