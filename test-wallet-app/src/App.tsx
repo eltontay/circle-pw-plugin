@@ -15,7 +15,6 @@ function App() {
       <div className="p-8 bg-white rounded-lg shadow-lg">
         <ConnectButton 
           onConnect={handleConnect}
-          enabledMethods={['email', 'google']}
         />
       </div>
     </div>

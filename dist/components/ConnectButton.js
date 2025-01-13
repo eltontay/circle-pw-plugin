@@ -26,10 +26,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConnectButton = void 0;
 const react_1 = __importStar(require("react"));
 const LoginModal_1 = require("./LoginModal");
-const ConnectButton = ({ onConnect, enabledMethods }) => {
+const ConnectButton = ({ onConnect, }) => {
     const [showModal, setShowModal] = (0, react_1.useState)(false);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("button", { className: "bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600", onClick: () => setShowModal(true) }, "Connect Wallet"),
-        showModal && (react_1.default.createElement(LoginModal_1.LoginModal, { onClose: () => setShowModal(false), onConnect: onConnect, enabledMethods: enabledMethods }))));
+        react_1.default.createElement("button", { className: "bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600", onClick: () => setShowModal(true) }, "Login or sign up"),
+        showModal && (react_1.default.createElement(LoginModal_1.LoginModal, { onClose: () => setShowModal(false), onConnect: onConnect }))));
 };
 exports.ConnectButton = ConnectButton;
