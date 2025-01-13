@@ -28,8 +28,9 @@ A plugin that provides out-of-the-box user interface components for Circle's Pro
 1. Clone the repository `git clone https://github.com/eltontay/circle-pw-sdk.git`
 2. Run `cd circle-pw-sdk && npm install` to install the dependencies
 3. Run `npm run build` to build the plugin
+3. Run `npm link` to link the plugin
 
 ### In Test Wallet App Directory
 
-4. Run `cd test-wallet-app && npm link @circle-pw-sdk && npm install` to link the plugin to your project
+4. Run `cd test-wallet-app && npm link circle-pw-sdk && npm install` to link the plugin to your project
 5. Run `npm run start` to start the application in your project
