@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { LoginModal } from './LoginModal';
 import { LoginMethod } from '../types';
@@ -10,7 +10,7 @@ interface ConnectButtonProps {
 }
 
 const ConnectButton = (props: ConnectButtonProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { onConnect } = props;
 
   return (
