@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@mui/material';
 import { LoginModal } from './LoginModal';
 import { LoginMethod } from '../types';
 
@@ -10,25 +11,31 @@ interface ConnectButtonProps {
 
 const ConnectButton = (props: ConnectButtonProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { onConnect, className = '', buttonColor = 'bg-violet-500 hover:bg-violet-600' } = props;
+  const { onConnect } = props;
 
   return (
-    <div>
-      <button 
-        className={`${buttonColor} text-white px-6 py-3 rounded-xl font-medium transition-colors duration-200 ${className}`}
+    <>
+      <Button
+        variant="contained"
+        size="large"
         onClick={() => setIsOpen(true)}
+        sx={{
+          borderRadius: 2,
+          textTransform: 'none',
+          py: 1.5,
+          px: 3
+        }}
       >
-        Login or sign up
-      </button>
+        Connect Wallet
+      </Button>
       
       {isOpen && (
         <LoginModal
           onClose={() => setIsOpen(false)}
           onConnect={onConnect}
-          buttonColor={buttonColor}
         />
       )}
-    </div>
+    </>
   );
 };
 

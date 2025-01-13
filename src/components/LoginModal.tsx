@@ -1,10 +1,35 @@
 import React from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import { FaApple } from 'react-icons/fa';
-import { HiDotsHorizontal } from 'react-icons/hi';
-import { IoCloseOutline } from 'react-icons/io5';
-import { MdOutlineEmail } from 'react-icons/md';
+import { 
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+  Button,
+  TextField,
+  Stack,
+  Typography,
+  Divider
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
+import GoogleIcon from '@mui/icons-material/Google';
+import AppleIcon from '@mui/icons-material/Apple';
+import EmailIcon from '@mui/icons-material/Email';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import KeyIcon from '@mui/icons-material/Key';
 import { LoginMethod } from '../types';
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  justifyContent: 'flex-start',
+  padding: '12px 16px',
+  borderRadius: 12,
+  textTransform: 'none',
+  border: `1px solid ${theme.palette.divider}`,
+  '&:hover': {
+    backgroundColor: theme.palette.grey[50],
+    borderColor: theme.palette.divider,
+  }
+}));
 
 interface LoginModalProps {
   onClose: () => void;
@@ -15,92 +40,123 @@ interface LoginModalProps {
 const LoginModal = (props: LoginModalProps) => {
   const [email, setEmail] = React.useState('');
   const [showEmailInput, setShowEmailInput] = React.useState(false);
-  const { onClose, onConnect, buttonColor = 'bg-violet-500 hover:bg-violet-600' } = props;
+  const { onClose, onConnect } = props;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
-      <div className="bg-white rounded-3xl p-8 w-[400px] max-w-[95%] shadow-xl relative">
-        {/* Close Button */}
-        <button 
-          onClick={onClose} 
-          className="absolute right-6 top-6 text-gray-400 hover:text-gray-600 transition-colors"
-        >
-          <IoCloseOutline className="w-6 h-6" />
-        </button>
+    <Dialog
+      open={true}
+      onClose={onClose}
+      maxWidth="xs"
+      fullWidth
+      PaperProps={{
+        sx: {
+          borderRadius: 3,
+          boxShadow: '0px 8px 32px rgba(0, 0, 0, 0.08)',
+        }
+      }}
+    >
+      <DialogTitle sx={{ pb: 1 }}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <div>
+            <Typography variant="h6" fontWeight={600}>Welcome</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Choose how you'd like to connect
+            </Typography>
+          </div>
+          <IconButton onClick={onClose} size="small">
+            <CloseIcon />
+          </IconButton>
+        </Stack>
+      </DialogTitle>
 
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-xl font-semibold text-gray-900">Login or sign up</h2>
-        </div>
-
-        {showEmailInput ? (
-          <div className="space-y-4">
-            <div className="flex items-center border rounded-xl p-3 focus-within:ring-2 focus-within:ring-violet-500 transition-all">
-              <MdOutlineEmail className="w-5 h-5 text-gray-400 mr-2" />
-              <input
-                type="email"
-                placeholder="your@email.com"
+      <DialogContent sx={{ pt: '8px !important' }}>
+        <Stack spacing={2}>
+          {showEmailInput ? (
+            <>
+              <TextField
+                fullWidth
+                label="Email address"
+                variant="outlined"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 outline-none text-gray-800"
+                InputProps={{
+                  startAdornment: <EmailIcon color="action" sx={{ mr: 1 }} />
+                }}
               />
-            </div>
-            <button 
-              className={`${buttonColor} w-full text-white py-3 rounded-xl font-medium transition-colors`}
-              onClick={() => onConnect('email')}
-            >
-              Submit
-            </button>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            <button 
-              onClick={() => setShowEmailInput(true)}
-              className="w-full border rounded-xl p-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-gray-700"
-            >
-              <MdOutlineEmail className="w-5 h-5" />
-              <span className="flex-1 text-left">Continue with email</span>
-            </button>
-            
-            <button 
-              onClick={() => onConnect('google')}
-              className="w-full border rounded-xl p-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-gray-700"
-            >
-              <FcGoogle className="w-5 h-5" />
-              <span className="flex-1 text-left">Continue with Google</span>
-            </button>
-            
-            <button 
-              onClick={() => onConnect('apple')}
-              className="w-full border rounded-xl p-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-gray-700"
-            >
-              <FaApple className="w-5 h-5" />
-              <span className="flex-1 text-left">Continue with Apple</span>
-            </button>
+              <Button
+                fullWidth
+                variant="contained"
+                size="large"
+                onClick={() => onConnect('email')}
+                sx={{ 
+                  borderRadius: 3,
+                  textTransform: 'none',
+                  py: 1.5
+                }}
+              >
+                Continue with Email
+              </Button>
+              <Button
+                variant="text"
+                onClick={() => setShowEmailInput(false)}
+                sx={{ textTransform: 'none' }}
+              >
+                ← Back to all options
+              </Button>
+            </>
+          ) : (
+            <>
+              <StyledButton
+                fullWidth
+                variant="outlined"
+                startIcon={<EmailIcon />}
+                onClick={() => setShowEmailInput(true)}
+              >
+                Continue with Email
+              </StyledButton>
+              
+              <StyledButton
+                fullWidth
+                variant="outlined"
+                startIcon={<GoogleIcon />}
+                onClick={() => onConnect('google')}
+              >
+                Continue with Google
+              </StyledButton>
+              
+              <StyledButton
+                fullWidth
+                variant="outlined"
+                startIcon={<AppleIcon />}
+                onClick={() => onConnect('apple')}
+              >
+                Continue with Apple
+              </StyledButton>
 
-            <button 
-              className="w-full border rounded-xl p-3 flex items-center gap-3 hover:bg-gray-50 transition-colors text-gray-700"
-            >
-              <HiDotsHorizontal className="w-5 h-5" />
-              <span className="flex-1 text-left">More options</span>
-              <span className="text-gray-400">›</span>
-            </button>
-          </div>
-        )}
+              <StyledButton
+                fullWidth
+                variant="outlined"
+                startIcon={<MoreHorizIcon />}
+                endIcon={<Typography color="text.secondary">›</Typography>}
+              >
+                More Options
+              </StyledButton>
+            </>
+          )}
+        </Stack>
 
-        {/* Passkey Option */}
-        <div className="mt-6 text-center">
-          <button className="text-violet-600 hover:text-violet-700 text-sm font-medium">
-            I have a passkey
-          </button>
-        </div>
-
-        {/* Protected by Privy */}
-        <div className="mt-6 text-center text-xs text-gray-500">
-          Protected by Privy
-        </div>
-      </div>
-    </div>
+        <Divider sx={{ my: 3 }} />
+        
+        <Button
+          fullWidth
+          variant="text"
+          startIcon={<KeyIcon />}
+          sx={{ textTransform: 'none' }}
+        >
+          I have a passkey
+        </Button>
+      </DialogContent>
+    </Dialog>
   );
 };
 

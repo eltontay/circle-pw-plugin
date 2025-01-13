@@ -11,12 +11,12 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="p-8 bg-white rounded-xl shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Test App</h1>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm p-8 space-y-6">
+        <h1 className="text-2xl font-bold text-gray-900">Test App</h1>
         <ConnectButton 
           onConnect={handleConnect}
-          buttonColor="bg-violet-500 hover:bg-violet-600"
+          buttonColor="bg-[var(--circle-blue)] hover:bg-[var(--circle-blue-dark)]"
         />
       </div>
     </div>
